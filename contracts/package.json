@@ -1,0 +1,27 @@
+{
+  "name": "@somniaagent/contracts",
+  "version": "0.1.0",
+  "description": "Smart contracts for SomniaAgent SDK",
+  "scripts": {
+    "build": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:testnet": "hardhat run scripts/deploy.ts --network testnet",
+    "deploy:mainnet": "hardhat run scripts/deploy.ts --network mainnet",
+    "clean": "hardhat clean"
+  },
+  "keywords": [
+    "somnia",
+    "smart-contracts",
+    "solidity"
+  ],
+  "author": "Hiep Le",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@openzeppelin/contracts": "^5.0.0",
+    "hardhat": "^2.19.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}

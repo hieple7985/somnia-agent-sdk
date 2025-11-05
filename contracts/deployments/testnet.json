@@ -1,0 +1,25 @@
+{
+  "network": "somnia-shannon-testnet",
+  "chainId": 50312,
+  "deployer": "0x0bb37A89207bf524b9d482624971B8A5EE08Da85",
+  "contracts": {
+    "AgentRegistry": "0xF118Ce0EC1370879D48c4d20e2654904e63c34fD",
+    "AgentFactory": "0x9f0b44f152EdDFB99f0206D2E7E390b5ED69372b",
+    "SampleBaseAgent": "0xC51D76BaD946a13428d4425FE07F3fbc23Af603D"
+  },
+  "timestamp": "2025-11-05T00:00:00.000Z",
+  "explorerUrls": {
+    "AgentRegistry": "https://shannon-explorer.somnia.network/address/0xF118Ce0EC1370879D48c4d20e2654904e63c34fD",
+    "AgentFactory": "https://shannon-explorer.somnia.network/address/0x9f0b44f152EdDFB99f0206D2E7E390b5ED69372b",
+    "SampleBaseAgent": "https://shannon-explorer.somnia.network/address/0xC51D76BaD946a13428d4425FE07F3fbc23Af603D"
+  },
+  "gasUsed": {
+    "AgentRegistry": "~800000",
+    "AgentFactory": "~600000",
+    "BaseAgent": "~1000000",
+    "Total": "~2400000"
+  },
+  "status": "deployed",
+  "verified": false
+}
+

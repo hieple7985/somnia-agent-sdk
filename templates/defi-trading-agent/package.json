@@ -1,0 +1,28 @@
+{
+  "name": "defi-trading-agent",
+  "version": "1.0.0",
+  "description": "DeFi Trading Agent template for SomniaAgent SDK",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "build": "tsc",
+    "test": "jest"
+  },
+  "keywords": [
+    "somnia",
+    "ai-agent",
+    "defi",
+    "trading"
+  ],
+  "author": "SomniaAgent SDK",
+  "license": "MIT",
+  "dependencies": {
+    "@somniaagent/core": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
+  }
+}
+

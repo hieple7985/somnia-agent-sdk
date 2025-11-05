@@ -1,0 +1,33 @@
+{
+  "name": "@somniaagent/core",
+  "version": "0.1.0",
+  "description": "Core SDK for building AI agents on Somnia blockchain",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "lint": "eslint src --ext .ts",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "somnia",
+    "ai-agent",
+    "blockchain",
+    "sdk"
+  ],
+  "author": "Hiep Le",
+  "license": "MIT",
+  "dependencies": {
+    "ethers": "^6.9.0",
+    "eventemitter3": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.10",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.2"
+  }
+}
+
