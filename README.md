@@ -2,7 +2,7 @@
 
 > **AI Agent Development Framework for Somnia Blockchain**
 
-Build production-ready AI agents in **10 minutes** instead of **10 days**.
+Build autonomous AI agents for Somnia in minutes, not weeks. This SDK handles the blockchain complexity so you can focus on your agent's logic.
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Somnia](https://img.shields.io/badge/blockchain-Somnia-purple.svg)](https://somnia.network)
@@ -33,30 +33,30 @@ somniaagent deploy --network testnet
 
 ## ✨ Features
 
-### 🎯 **10x Faster Development**
-- **10 lines of code** vs 500+ lines traditional approach
-- **10 minutes** to deploy vs 2-3 weeks
-- **3 simple commands**: init, test, deploy
+### 🎯 **Rapid Development**
+- Write agents in ~10-20 lines instead of 500+ lines of boilerplate
+- Get from idea to testnet deployment in 10-15 minutes
+- Three commands to get started: `init`, `test`, `deploy`
 
 ### 🧪 **Built-in Testing**
 - Simulate blockchain events without spending gas
 - Test agent behavior before deployment
-- Multiple test scenarios included
+- Multiple test scenarios included (market volatility, normal trading, etc.)
 
 ### 🔧 **Complete Toolkit**
-- **Core SDK** - Event-driven agent framework
-- **CLI Tool** - 5 powerful commands
-- **Testing Framework** - Simulation & validation
-- **Smart Contracts** - Production-ready contracts
-- **Templates** - DeFi, Gaming, Custom agents
-- **Examples** - Simple & advanced use cases
+- **Core SDK** - Event-driven agent framework with TypeScript support
+- **CLI Tool** - Command-line interface for quick scaffolding
+- **Testing Framework** - Simulation & validation tools
+- **Smart Contracts** - Production-ready contracts (BaseAgent, Registry, Factory)
+- **Templates** - Pre-built templates for DeFi and custom agents
+- **Examples** - Working examples from simple to advanced
 
 ### 🌐 **Production Ready**
-- ✅ Deployed on Somnia Shannon Testnet
-- ✅ Fully tested and verified
-- ✅ Comprehensive documentation
-- ✅ TypeScript support
-- ✅ Open source (MIT License)
+- ✅ Deployed and tested on Somnia Shannon Testnet
+- ✅ Contract verification on block explorer
+- ✅ Comprehensive documentation with real examples
+- ✅ Full TypeScript support with type definitions
+- ✅ Open source under MIT License
 
 ---
 
@@ -95,6 +95,20 @@ somniaagent deploy --network testnet
 
 ---
 
+## ⚠️ Current Limitations
+
+This is an MVP built for the Somnia AI Hackathon. Here are some known limitations:
+
+- **Event Subscription**: Currently uses polling instead of WebSocket (WebSocket reconnection is tricky)
+- **AI Integration**: Mock AI interface by default - you need to plug in your own models
+- **Rate Limiting**: No built-in rate limiting - implement your own for production
+- **Gas Estimation**: Basic estimation that doesn't account for network congestion
+- **Testing**: Simulator doesn't model network delays or failures yet
+
+See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for full list of trade-offs and post-MVP roadmap.
+
+---
+
 ## 🌐 Deployed Contracts
 
 **Network:** Somnia Shannon Testnet (Chain ID: 50312)
@@ -116,20 +130,22 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for full details.
 ```typescript
 import { SomniaAgent } from '@somniaagent/core';
 
-// Create agent
+// Create agent with basic config
 const agent = new SomniaAgent({
   name: 'MyTradingBot',
   type: 'defi',
   autonomy: 'high',
 });
 
-// Initialize
+// Initialize connection to Somnia
 await agent.init();
 
-// Add event handler
+// Add event handler for price changes
 agent.onEvent('price_change', async (event) => {
+  // Use AI to analyze market data
   const decision = await agent.ai.analyze(event.data);
-  
+
+  // Only execute if confidence is high enough
   if (decision.confidence > 0.7) {
     await agent.execute({
       type: decision.action,
@@ -138,7 +154,7 @@ agent.onEvent('price_change', async (event) => {
   }
 });
 
-// Start agent
+// Start listening for events
 await agent.start();
 ```
 

@@ -42,11 +42,15 @@ Complete guide for deploying SomniaAgent SDK to Somnia Shannon Testnet.
 3. Connect your wallet
 4. Request tokens (0.01 STT/day)
 
+**Note:** The official faucet has a daily limit. If you need more tokens, try the other options below.
+
 #### Option B: Thirdweb Faucet
 1. Visit https://thirdweb.com/somnia-shannon-testnet
 2. Scroll to "Faucet" section
 3. Connect wallet
 4. Request tokens
+
+**Tip:** Thirdweb faucet is usually faster but may require social verification.
 
 #### Option C: Google Cloud Faucet
 1. Visit https://cloud.google.com/application/web3/faucet/somnia/shannon
@@ -54,7 +58,7 @@ Complete guide for deploying SomniaAgent SDK to Somnia Shannon Testnet.
 3. Complete captcha
 4. Receive tokens
 
-**Note:** You need at least 0.1 STT for deployment (gas fees).
+**Note:** You need at least 0.1 STT for deployment (gas fees). I recommend getting 0.5 STT to have some buffer for testing.
 
 ---
 
@@ -345,9 +349,11 @@ Error: insufficient funds for gas * price + value
 ```
 
 **Solution:**
-- Get more STT from faucet
+- Get more STT from faucet (you need at least 0.1 STT)
 - Wait 24 hours for daily limit reset
-- Try multiple faucets
+- Try multiple faucets (I usually use Thirdweb + Google Cloud together)
+
+**Personal note:** I've found that having 0.5 STT is a good buffer for testing multiple deployments.
 
 ### Issue 2: Network Connection Failed
 ```
@@ -355,10 +361,12 @@ Error: could not detect network
 ```
 
 **Solution:**
-- Check RPC URL is correct
-- Try alternative RPC: https://testnet.somnia.network/rpc
+- Check RPC URL is correct: `https://50312.rpc.thirdweb.com`
+- Try alternative RPC: `https://testnet.somnia.network/rpc` (sometimes more stable)
 - Check internet connection
-- Verify chain ID (50312)
+- Verify chain ID is exactly `50312` (not 5031 which is mainnet)
+
+**Tip:** If one RPC is slow, switch to the other. I've noticed Thirdweb RPC is faster during US hours.
 
 ### Issue 3: Nonce Too Low
 ```
@@ -366,9 +374,11 @@ Error: nonce has already been used
 ```
 
 **Solution:**
-- Reset MetaMask account
-- Wait for pending transactions
-- Manually set nonce
+- Reset MetaMask account (Settings > Advanced > Reset Account)
+- Wait for pending transactions to complete
+- Manually set nonce in transaction
+
+**Note:** This usually happens when you have multiple pending transactions. Just wait a minute and try again.
 
 ### Issue 4: Contract Deployment Failed
 ```
@@ -376,10 +386,12 @@ Error: transaction failed
 ```
 
 **Solution:**
-- Increase gas limit
-- Check contract code for errors
-- Verify Solidity version (0.8.20)
-- Check constructor parameters
+- Increase gas limit (try 6,000,000 instead of default 5,000,000)
+- Check contract code for errors (run `npx hardhat compile` first)
+- Verify Solidity version is 0.8.20
+- Check constructor parameters are correct
+
+**Common mistake:** Make sure you're not trying to deploy to mainnet by accident. Always double-check the network!
 
 ---
 

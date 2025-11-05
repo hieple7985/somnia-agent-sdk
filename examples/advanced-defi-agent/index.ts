@@ -1,17 +1,24 @@
 /**
  * Advanced DeFi Agent Example
- * 
- * Demonstrates advanced features:
- * - Multi-strategy trading
- * - Portfolio management
- * - Risk management
- * - Performance tracking
- * - Custom AI integration
+ *
+ * This example shows a more realistic trading agent with:
+ * - Multi-strategy approach (mean reversion + momentum)
+ * - Portfolio management with position tracking
+ * - Risk management (2% risk per trade)
+ * - Performance metrics tracking
+ * - Custom AI integration layer
+ *
+ * Note: This is still a simplified example. For production trading:
+ * - Add proper slippage protection
+ * - Implement circuit breakers for extreme volatility
+ * - Add position size limits
+ * - Use proper order types (limit orders, not just market)
+ * - Add comprehensive logging and monitoring
  */
 
 import { SomniaAgent, AgentState } from '@somniaagent/core';
 
-// Portfolio state
+// Portfolio state interface
 interface Portfolio {
   ETH: number;
   USDC: number;
@@ -24,28 +31,30 @@ interface Position {
   amount: number;
   entryPrice: number;
   currentPrice: number;
-  pnl: number;
+  pnl: number;  // Profit and Loss
 }
 
-// Trading strategy
+// Trading strategy implementation
 class TradingStrategy {
   private portfolio: Portfolio = {
     ETH: 0,
-    USDC: 10000, // Start with 10k USDC
+    USDC: 10000, // Start with 10k USDC for testing
     totalValue: 10000,
     positions: [],
   };
 
   // Mean reversion strategy
+  // Buys when price is below average, sells when above
   async meanReversion(price: number, avgPrice: number): Promise<string> {
     const deviation = (price - avgPrice) / avgPrice;
-    
+
+    // Using 5% threshold - adjust based on your risk tolerance
     if (deviation < -0.05) {
-      return 'buy'; // Price is 5% below average
+      return 'buy'; // Price is 5% below average - potential bounce
     } else if (deviation > 0.05) {
-      return 'sell'; // Price is 5% above average
+      return 'sell'; // Price is 5% above average - potential correction
     }
-    
+
     return 'hold';
   }
 

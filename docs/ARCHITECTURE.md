@@ -571,13 +571,25 @@ Load Balancer
 5. ✅ Simple dashboard (read-only)
 6. ✅ 3 smart contracts (BaseAgent, Registry, Factory)
 
+**Trade-offs made for MVP:**
+- Using JsonRpcProvider instead of WebSocket for simplicity (WebSocket reconnection is tricky)
+- Mock AI interface by default (users can plug in their own models)
+- No database persistence yet (state is in-memory)
+- Basic event system (no complex event filtering or replay)
+
 ### What's Post-MVP:
 
-1. ⏳ Advanced AI models
-2. ⏳ Multi-agent coordination
-3. ⏳ VS Code extension
-4. ⏳ Advanced analytics
-5. ⏳ Mobile dashboard
+1. ⏳ Advanced AI models (pre-trained trading models)
+2. ⏳ Multi-agent coordination (agents communicating with each other)
+3. ⏳ VS Code extension (would be nice but not critical)
+4. ⏳ Advanced analytics (detailed performance metrics)
+5. ⏳ Mobile dashboard (low priority)
+
+**Known Limitations:**
+- Event subscription is currently polling-based (not ideal for high-frequency trading)
+- No built-in rate limiting (users need to implement their own)
+- Gas estimation is basic (doesn't account for network congestion)
+- Testing framework doesn't simulate network delays or failures yet
 
 ---
 

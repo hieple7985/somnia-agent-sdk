@@ -60,19 +60,23 @@ export class SomniaAgent {
 
   /**
    * Initialize the agent
+   * Sets up blockchain connection and loads contract if already deployed
    */
   async init(): Promise<void> {
     try {
-      // Set up provider
+      // Connect to Somnia network
+      // Using JsonRpcProvider instead of WebSocketProvider for better stability
       const network = this.getNetwork();
       this.provider = new ethers.JsonRpcProvider(network.rpcUrl);
 
-      // Set up signer if private key provided
+      // Set up signer for transaction signing
+      // Private key is optional - only needed if agent will execute transactions
       if (this.config.privateKey) {
         this.signer = new ethers.Wallet(this.config.privateKey, this.provider);
       }
 
-      // Load contract if address provided
+      // Load existing contract if address is provided
+      // This is useful when reconnecting to an already deployed agent
       if (this.config.contractAddress) {
         await this.loadContract(this.config.contractAddress);
       }
@@ -154,7 +158,8 @@ export class SomniaAgent {
   }
 
   /**
-   * Execute an action
+   * Execute an action on the blockchain
+   * This sends a transaction to the agent's smart contract
    */
   async execute(action: Action): Promise<ExecutionResult> {
     if (!this.contract || !this.signer) {
@@ -164,7 +169,8 @@ export class SomniaAgent {
     const startTime = Date.now();
 
     try {
-      // Execute action on smart contract
+      // Encode action params as bytes for contract call
+      // We serialize to JSON then convert to UTF-8 bytes
       const tx = await this.contract.executeAction(
         action.type,
         ethers.toUtf8Bytes(JSON.stringify(action.params)),
@@ -174,9 +180,10 @@ export class SomniaAgent {
         }
       );
 
+      // Wait for transaction to be mined
       const receipt = await tx.wait();
 
-      // Update metrics
+      // Track success metrics
       this.updateMetrics(true, Number(receipt.gasUsed));
 
       const result: ExecutionResult = {
@@ -195,6 +202,7 @@ export class SomniaAgent {
 
       return result;
     } catch (error) {
+      // Track failure metrics
       this.updateMetrics(false, 0);
 
       const result: ExecutionResult = {
@@ -251,6 +259,10 @@ export class SomniaAgent {
 
   /**
    * Deploy agent to blockchain
+   *
+   * TODO: This is currently a mock implementation
+   * Need to implement actual contract deployment using ethers ContractFactory
+   * See: https://docs.ethers.org/v6/api/contract/#ContractFactory
    */
   async deploy(options: DeploymentOptions): Promise<DeploymentResult> {
     if (!this.signer) {
@@ -259,7 +271,14 @@ export class SomniaAgent {
 
     try {
       // TODO: Implement actual contract deployment
-      // For now, return mock result
+      // Steps needed:
+      // 1. Load BaseAgent contract ABI and bytecode
+      // 2. Create ContractFactory
+      // 3. Deploy with constructor params
+      // 4. Wait for deployment transaction
+      // 5. Register in AgentRegistry
+
+      // For now, return mock result for testing
       const mockAddress = ethers.Wallet.createRandom().address;
       const network = this.getNetwork();
 
@@ -285,15 +304,19 @@ export class SomniaAgent {
 
   /**
    * Get AI interface
+   *
+   * Returns a mock AI interface by default. Users should call setAI() to provide
+   * their own AI implementation (e.g., TensorFlow, PyTorch, or API-based models)
    */
   get ai(): AIInterface {
     if (!this.aiInterface) {
       // Return mock AI interface for now
+      // TODO: Consider adding a warning log when using mock AI
       this.aiInterface = {
         analyze: async (data: any) => ({
           action: 'hold',
           confidence: 0.5,
-          reasoning: 'No AI model configured',
+          reasoning: 'No AI model configured - using default hold strategy',
           params: {},
         }),
         predict: async (input: any) => ({
@@ -336,8 +359,8 @@ export class SomniaAgent {
   }
 
   private async loadContract(address: string): Promise<void> {
-    // TODO: Load actual contract ABI
-    // For now, create mock contract
+    // TODO: Load actual contract ABI from artifacts or etherscan
+    // For now, using minimal ABI for basic functionality
     const abi = [
       'function executeAction(string actionType, bytes data) external returns (bool)',
       'function getInfo() external view returns (string, uint8, uint8, address)',
@@ -347,8 +370,10 @@ export class SomniaAgent {
   }
 
   private async subscribeToEvents(events: string[]): Promise<void> {
-    // TODO: Implement actual event subscription
-    // For now, just log
+    // TODO: Implement actual event subscription using contract.on() or WebSocket
+    // Current limitation: This is just a placeholder
+    // Need to implement proper event filtering and handling
+    // See: https://docs.ethers.org/v6/api/contract/#ContractEvent
     console.log(`Subscribed to events: ${events.join(', ')}`);
   }
 

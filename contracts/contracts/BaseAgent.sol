@@ -7,22 +7,28 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 /**
  * @title BaseAgent
  * @dev Base contract for AI agents on Somnia blockchain
+ *
+ * This contract provides the core functionality for autonomous agents.
+ * It handles action execution, status management, and event emission.
+ *
+ * Note: This is designed to be extended by specific agent implementations.
+ * See examples in the templates/ directory.
  */
 contract BaseAgent is Ownable, ReentrancyGuard {
     // Agent types
     enum AgentType {
-        DEFI,
-        GAMING,
-        GOVERNANCE,
-        CUSTOM
+        DEFI,      // DeFi trading, yield farming, etc.
+        GAMING,    // Gaming NPCs, automated players
+        GOVERNANCE, // DAO voting, proposal management
+        CUSTOM     // Custom use cases
     }
 
     // Agent status
     enum AgentStatus {
-        IDLE,
-        RUNNING,
-        PAUSED,
-        ERROR
+        IDLE,      // Agent is initialized but not running
+        RUNNING,   // Agent is actively processing events
+        PAUSED,    // Agent is temporarily paused
+        ERROR      // Agent encountered an error
     }
 
     // Agent information
@@ -93,8 +99,12 @@ contract BaseAgent is Ownable, ReentrancyGuard {
 
     /**
      * @dev Execute an action
-     * @param actionType Type of action
-     * @param data Action data
+     * @param actionType Type of action (e.g., "buy", "sell", "swap")
+     * @param data Action data encoded as bytes
+     *
+     * Note: This function uses a simple replay protection mechanism.
+     * For production use with high-frequency trading, consider adding
+     * a time-based expiration for action hashes.
      */
     function executeAction(
         string memory actionType,
@@ -106,12 +116,13 @@ contract BaseAgent is Ownable, ReentrancyGuard {
         );
         require(bytes(actionType).length > 0, "Action type cannot be empty");
 
-        // Create action hash
+        // Create action hash for replay protection
+        // Using timestamp + counter ensures uniqueness
         bytes32 actionHash = keccak256(
             abi.encodePacked(actionType, data, block.timestamp, agentInfo.totalActions)
         );
 
-        // Check if action already executed (prevent replay)
+        // Check if action already executed (prevent replay attacks)
         require(!executedActions[actionHash], "Action already executed");
 
         // Mark as executed
@@ -120,7 +131,7 @@ contract BaseAgent is Ownable, ReentrancyGuard {
         // Increment action counter
         agentInfo.totalActions++;
 
-        // Emit event
+        // Emit event for off-chain monitoring
         emit ActionExecuted(actionType, data, block.timestamp, actionHash);
 
         return true;

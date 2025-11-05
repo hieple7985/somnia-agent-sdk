@@ -1,38 +1,53 @@
 /**
  * Simple Trading Bot Example
- * 
+ *
  * Demonstrates the power of SomniaAgent SDK:
- * - Just 20 lines of code
+ * - Just ~20 lines of code
  * - Fully autonomous trading agent
  * - AI-powered decision making
  * - Ready to deploy
+ *
+ * Note: This is a minimal example. For production use, add proper error handling,
+ * rate limiting, and risk management (see advanced-defi-agent example).
  */
 
 import { SomniaAgent } from '@somniaagent/core';
 
-// Create agent (1 line)
+// Create agent with basic config
 const agent = new SomniaAgent({
   name: 'SimpleTradingBot',
   type: 'defi',
   autonomy: 'high',
 });
 
-// Initialize (1 line)
+// Initialize connection to Somnia
 await agent.init();
 
-// Add trading logic (5 lines)
+// Add trading logic
 agent.onEvent('price_change', async (event) => {
-  const decision = await agent.ai.analyze(event.data);
-  if (decision.confidence > 0.7) {
-    await agent.execute({ type: decision.action, params: decision.params });
+  try {
+    // Use AI to analyze market data
+    const decision = await agent.ai.analyze(event.data);
+
+    // Only execute if confidence is high enough
+    if (decision.confidence > 0.7) {
+      await agent.execute({
+        type: decision.action,
+        params: decision.params
+      });
+      console.log(`✅ Executed ${decision.action} with confidence ${decision.confidence}`);
+    }
+  } catch (error) {
+    // In production, you'd want more sophisticated error handling
+    console.error('❌ Trade failed:', error);
   }
 });
 
-// Start agent (1 line)
+// Start listening for events
 await agent.start();
 
 // That's it! Your agent is now running autonomously on Somnia blockchain.
-// Total: ~10 lines of actual code vs. 500-1000 lines without SDK
+// Total: ~15 lines of actual code vs. 500-1000 lines without SDK
 
 console.log('🚀 Trading bot is running!');
 console.log('📊 Status:', agent.getState().status);
