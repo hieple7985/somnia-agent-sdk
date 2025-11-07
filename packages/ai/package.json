@@ -1,0 +1,34 @@
+{
+  "name": "@somniaagent/ai",
+  "version": "1.0.0",
+  "description": "AI/ML Integration Layer for SomniaAgent SDK - Free local LLM support",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "lint": "eslint src --ext .ts"
+  },
+  "keywords": [
+    "somnia",
+    "ai",
+    "llm",
+    "ollama",
+    "local-llm",
+    "openai",
+    "blockchain",
+    "agent"
+  ],
+  "author": "Hiep Le",
+  "license": "MIT",
+  "dependencies": {
+    "@somniaagent/core": "workspace:*",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
+

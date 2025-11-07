@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SomniaAgent SDK - Build AI Agents in 10 Minutes</title>
+    <meta name="description" content="Build autonomous AI agents for Somnia blockchain in 10 minutes, not 10 days. Free to run with local LLM support.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <span class="badge">🏆 Somnia AI Hackathon 2025</span>
+                <span class="badge badge-success">✅ Deployed on Testnet</span>
+            </div>
+            
+            <h1 class="hero-title">
+                Build AI Agents in <span class="gradient-text">10 Minutes</span><br>
+                Not 10 Days
+            </h1>
+            
+            <p class="hero-subtitle">
+                Complete AI Agent Development Framework for Somnia Blockchain<br>
+                <strong>Free to run</strong> with local LLM support • <strong>99% faster</strong> • <strong>95% less code</strong>
+            </p>
+            
+            <div class="hero-cta">
+                <a href="#get-started" class="btn btn-primary btn-lg">
+                    Get Started →
+                </a>
+                <a href="https://github.com/hieple7985/somnia-agent-sdk" class="btn btn-secondary btn-lg" target="_blank">
+                    View on GitHub
+                </a>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-value">5,700+</div>
+                    <div class="stat-label">Lines of Code</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Deployed Contracts</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">99%</div>
+                    <div class="stat-label">Faster</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">$0</div>
+                    <div class="stat-label">Cost to Run</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Demo Section -->
+    <section class="code-demo">
+        <div class="container">
+            <div class="section-header">
+                <h2>From 500 Lines to <span class="gradient-text">10 Lines</span></h2>
+                <p>See the difference yourself</p>
+            </div>
+            
+            <div class="code-comparison">
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">❌ Traditional Approach</span>
+                        <span class="code-meta">500+ lines • 2-3 weeks</span>
+                    </div>
+                    <pre><code>// Complex setup, event handling...
+// Manual deployment scripts...
+// No testing framework...
+// 500+ lines of boilerplate code
+// 2-3 weeks of development time
+
+😫 Complex • 🐌 Slow • 💸 Expensive</code></pre>
+                </div>
+                
+                <div class="code-block code-block-success">
+                    <div class="code-header">
+                        <span class="code-title">✅ With SomniaAgent SDK</span>
+                        <span class="code-meta">10 lines • 10 minutes</span>
+                    </div>
+                    <pre><code>import { SomniaAgent } from '@somniaagent/core';
+
+const agent = new SomniaAgent({
+  name: 'MyTradingBot',
+  type: 'defi',
+  autonomy: 'high',
+});
+
+await agent.init();
+
+agent.onEvent('price_change', async (event) => {
+  const decision = await agent.ai.analyze(event.data);
+  if (decision.confidence > 0.7) {
+    await agent.execute(decision.action);
+  }
+});
+
+await agent.start();
+
+😊 Simple • ⚡ Fast • 💰 Free</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Everything You Need to Build <span class="gradient-text">AI Agents</span></h2>
+                <p>Complete toolkit from development to deployment</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>99% Faster</h3>
+                    <p>Deploy in 10 minutes instead of 2-3 weeks. From idea to production in record time.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Free to Run</h3>
+                    <p>Zero-cost local testing with Ollama, LM Studio. No API fees during development.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🧪</div>
+                    <h3>Built-in Testing</h3>
+                    <p>Simulate blockchain events without spending gas. Test before you deploy.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Ready Templates</h3>
+                    <p>DeFi trading, gaming NPCs, custom agents. Start with working examples.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Production Ready</h3>
+                    <p>OpenZeppelin security, TypeScript types, comprehensive testing.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3>Deployed & Verified</h3>
+                    <p>Live on Somnia Shannon Testnet. Real contracts, real blockchain.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deployed Contracts Section -->
+    <section class="contracts">
+        <div class="container">
+            <div class="section-header">
+                <h2>Live on <span class="gradient-text">Somnia Testnet</span></h2>
+                <p>Real contracts, deployed and verified</p>
+            </div>
+            
+            <div class="contracts-grid">
+                <div class="contract-card">
+                    <div class="contract-header">
+                        <h3>AgentRegistry</h3>
+                        <span class="badge badge-success">✅ Verified</span>
+                    </div>
+                    <code class="contract-address">0xF118Ce0EC1370879D48c4d20e2654904e63c34fD</code>
+                    <a href="https://shannon-explorer.somnia.network/address/0xF118Ce0EC1370879D48c4d20e2654904e63c34fD" class="contract-link" target="_blank">
+                        View on Explorer →
+                    </a>
+                </div>
+                
+                <div class="contract-card">
+                    <div class="contract-header">
+                        <h3>AgentFactory</h3>
+                        <span class="badge badge-success">✅ Verified</span>
+                    </div>
+                    <code class="contract-address">0x9f0b44f152EdDFB99f0206D2E7E390b5ED69372b</code>
+                    <a href="https://shannon-explorer.somnia.network/address/0x9f0b44f152EdDFB99f0206D2E7E390b5ED69372b" class="contract-link" target="_blank">
+                        View on Explorer →
+                    </a>
+                </div>
+                
+                <div class="contract-card">
+                    <div class="contract-header">
+                        <h3>Sample Agent</h3>
+                        <span class="badge badge-success">✅ Tested</span>
+                    </div>
+                    <code class="contract-address">0xC51D76BaD946a13428d4425FE07F3fbc23Af603D</code>
+                    <a href="https://shannon-explorer.somnia.network/address/0xC51D76BaD946a13428d4425FE07F3fbc23Af603D" class="contract-link" target="_blank">
+                        View on Explorer →
+                    </a>
+                </div>
+            </div>
+            
+            <div class="network-info">
+                <p><strong>Network:</strong> Somnia Shannon Testnet</p>
+                <p><strong>Chain ID:</strong> 50312</p>
+                <p><strong>Status:</strong> ✅ All contracts deployed, tested & verified</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Started Section -->
+    <section class="get-started" id="get-started">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get Started in <span class="gradient-text">3 Commands</span></h2>
+                <p>From zero to deployed agent in 10 minutes</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Install CLI</h3>
+                    <pre><code>npm install -g @somniaagent/cli</code></pre>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Create Agent</h3>
+                    <pre><code>somniaagent init my-bot --template defi-trading</code></pre>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Test & Deploy</h3>
+                    <pre><code>somniaagent test --scenario market_volatility
+somniaagent deploy --network testnet</code></pre>
+                </div>
+            </div>
+            
+            <div class="cta-box">
+                <h3>🎉 That's it! Your agent is live on Somnia blockchain.</h3>
+                <a href="https://github.com/hieple7985/somnia-agent-sdk" class="btn btn-primary btn-lg" target="_blank">
+                    View Full Documentation →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>SomniaAgent SDK</h4>
+                    <p>Build autonomous AI agents for Somnia blockchain</p>
+                    <p class="footer-meta">Built for Somnia AI Hackathon 2025</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="https://github.com/hieple7985/somnia-agent-sdk" target="_blank">GitHub</a></li>
+                        <li><a href="https://docs.somnia.network" target="_blank">Somnia Docs</a></li>
+                        <li><a href="https://shannon-explorer.somnia.network" target="_blank">Block Explorer</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#get-started">Get Started</a></li>
+                        <li><a href="https://github.com/hieple7985/somnia-agent-sdk/tree/main/docs" target="_blank">Documentation</a></li>
+                        <li><a href="https://github.com/hieple7985/somnia-agent-sdk/tree/main/examples" target="_blank">Examples</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 SomniaAgent SDK • MIT License • Built with ❤️ for Somnia</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
