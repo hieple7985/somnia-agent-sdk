@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "name": "somniaagent-sdk",
+  "builds": [
+    {
+      "src": "landing/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/landing/$1"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/landing/index.html"
+    }
+  ]
+}
+
